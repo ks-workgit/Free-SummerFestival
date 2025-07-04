@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    [SerializeField] Transform m_neck;	// プレイヤーの首のTransformを指定
+    [SerializeField] private Transform m_neck;		// プレイヤーの首のTransformを指定
     [SerializeField] private float m_sensitivity;	// マウス感度
     [SerializeField] private float m_minVertical;	// 視点の最小角度（縦の回転制限）
     [SerializeField] private float m_maxVertical;	// 視点の最大角度（縦の回転制限）
