@@ -11,11 +11,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 m_velocity;
     private bool m_isGrounded;
+    private bool m_isStay;
 
 	private void Start()
 	{
         m_velocity = new Vector3(0, 0, 0);
 		m_isGrounded = false;
+        m_isStay = false;
 	}
 
 	private void Update()
@@ -43,4 +45,25 @@ public class PlayerController : MonoBehaviour
         // ˆÚ“®‚Æd—Í‚ğˆê“x‚ÌMove‚Åˆ—
         m_controller.Move((moveDirection + m_velocity) * Time.deltaTime);
 	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("ElevatorSensor"))
+        {
+            m_isStay = true;
+        }
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.CompareTag("ElevatorSensor"))
+		{
+			m_isStay = false;
+		}
+	}
+
+    public bool GetIsStay()
+    {
+        return m_isStay;
+    }
 }

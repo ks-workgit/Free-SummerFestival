@@ -33,11 +33,18 @@ public class PlayerCamera : MonoBehaviour
 		m_rotationX = Mathf.Clamp(m_rotationX, m_minVertical, m_maxVertical);	// ‰ñ“]Šp“x‚ğw’è‚³‚ê‚½”ÍˆÍ‚É§ŒÀ
 		m_neck.localRotation = Quaternion.Euler(m_rotationX, 0, 0); // ñ‚Ì‰ñ“]‚ğİ’è‚µAc•ûŒü‚Ì‚İ‰ñ“]‚³‚¹‚é
 
-		Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width, Screen.height) / 2);
-
-		if (Physics.Raycast(ray, out RaycastHit hit, m_armLength) && hit.collider.tag == "ElevatorButton")
+		if (Input.GetMouseButtonDown(0))
 		{
-			m_gameObject = hit.collider.gameObject;
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			if (Physics.Raycast(ray, out RaycastHit hit, m_armLength) && hit.collider.tag == "ElevatorButton")
+			{
+				m_gameObject = hit.collider.gameObject;
+			}
+			else
+			{
+				m_gameObject = null;
+			}
 		}
 	}
 

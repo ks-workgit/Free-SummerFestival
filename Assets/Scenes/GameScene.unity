@@ -530,7 +530,6 @@ GameObject:
   - component: {fileID: 27395024}
   - component: {fileID: 27395023}
   - component: {fileID: 27395022}
-  - component: {fileID: 27395021}
   m_Layer: 0
   m_Name: FallButton
   m_TagString: ElevatorButton
@@ -553,21 +552,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 877098966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &27395021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 27395019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0921628aeed8694a93fae5f76f30548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_player: {fileID: 875479166}
-  m_animator: {fileID: 881015396}
-  m_distance: 5
 --- !u!136 &27395022
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1360,6 +1344,59 @@ Transform:
   - {fileID: 1433766137}
   m_Father: {fileID: 2116502155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &245955660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 245955661}
+  - component: {fileID: 245955662}
+  m_Layer: 0
+  m_Name: ElevatorSensor
+  m_TagString: ElevatorSensor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &245955661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245955660}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 881015397}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &245955662
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245955660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 3, z: 3.7}
+  m_Center: {x: -0.5, y: 1.5, z: 0}
 --- !u!4 &257455749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1017606091530846216, guid: c5be39b879c83f54d9bbfebe68c809be,
@@ -4668,7 +4705,7 @@ Transform:
   m_GameObject: {fileID: 875479162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.956, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4766,7 +4803,10 @@ MonoBehaviour:
   m_anomalyManager: {fileID: 19331691}
   m_riseButton: {fileID: 1279482788}
   m_fallButton: {fileID: 27395019}
+  m_playerController: {fileID: 875479168}
   m_playerCamera: {fileID: 875479169}
+  m_interactButton: {fileID: 954461126}
+  m_animator: {fileID: 881015396}
 --- !u!4 &877098966
 Transform:
   m_ObjectHideFlags: 0
@@ -4782,11 +4822,18 @@ Transform:
   m_Children:
   - {fileID: 1279482793}
   - {fileID: 27395020}
+  - {fileID: 904150721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &881015396 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8953390711566883022, guid: 949f48d463a34f341aba9764485439d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6152652891752722739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &881015397 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2298718884467892355, guid: 949f48d463a34f341aba9764485439d0,
     type: 3}
   m_PrefabInstance: {fileID: 6152652891752722739}
   m_PrefabAsset: {fileID: 0}
@@ -5019,6 +5066,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5be39b879c83f54d9bbfebe68c809be, type: 3}
+--- !u!1 &904150720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 904150721}
+  - component: {fileID: 904150722}
+  m_Layer: 0
+  m_Name: ElevatorSensor
+  m_TagString: ElevatorSensor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &904150721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904150720}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.5, z: 1.456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 877098966}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &904150722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904150720}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 3, z: 3.7}
+  m_Center: {x: -0.5, y: 1.5, z: 0}
 --- !u!1001 &908003310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5216,7 +5316,7 @@ GameObject:
   - component: {fileID: 954461126}
   m_Layer: 0
   m_Name: InteractButton
-  m_TagString: Untagged
+  m_TagString: ElevatorButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5323,7 +5423,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_player: {fileID: 875479166}
   m_animator: {fileID: 881015396}
-  m_distance: 5
+  m_button: {fileID: 954461121}
+  m_playerCamera: {fileID: 875479169}
+  m_interactElevator: {fileID: 877098965}
 --- !u!1001 &970273559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6781,7 +6883,6 @@ GameObject:
   - component: {fileID: 1279482792}
   - component: {fileID: 1279482791}
   - component: {fileID: 1279482790}
-  - component: {fileID: 1279482789}
   m_Layer: 0
   m_Name: RiseButton
   m_TagString: ElevatorButton
@@ -6789,21 +6890,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1279482789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279482788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0921628aeed8694a93fae5f76f30548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_player: {fileID: 875479166}
-  m_animator: {fileID: 881015396}
-  m_distance: 5
 --- !u!136 &1279482790
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10667,10 +10753,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: .
+  m_text: "\u30FB"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f44f9624bf938748a51c15cce546211, type: 2}
+  m_sharedMaterial: {fileID: 1588346191996036349, guid: 2f44f9624bf938748a51c15cce546211,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10694,8 +10781,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11687,7 +11774,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2298718884467892355, guid: 949f48d463a34f341aba9764485439d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 245955661}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 949f48d463a34f341aba9764485439d0, type: 3}
 --- !u!1660057539 &9223372036854775807
