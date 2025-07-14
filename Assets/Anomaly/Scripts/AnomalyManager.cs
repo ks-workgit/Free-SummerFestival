@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AnomalyManager : MonoBehaviour
@@ -14,6 +15,9 @@ public class AnomalyManager : MonoBehaviour
 	[SerializeField] private GameObject m_anomaly;
 	// クリアする階層
 	[SerializeField] private int m_clearFloor;
+
+	// 現在のフロアを表示するテキスト
+	[SerializeField] private TMP_Text m_currentNumText;
 
 	private void Start()
 	{
@@ -40,13 +44,17 @@ public class AnomalyManager : MonoBehaviour
 
 		AnomalySet();
 
+		// 現在のフロアを0にする
 		m_currentNum = 0;
+		m_currentNumText.text = m_currentNum.ToString() + "F";
 	}
 
 	// 異変を選んでセットする
 	public void AnomalySet()
 	{
+		// 現在のフロアを更新
 		m_currentNum++;
+		m_currentNumText.text = m_currentNum.ToString() + "F";
 
 		// 一度全ての異変を非表示
 		for (int i = 0; i < m_allAnomalyList.Count; i++)

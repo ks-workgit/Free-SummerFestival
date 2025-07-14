@@ -6,12 +6,9 @@ using UnityEngine;
 
 public class InteractButton : MonoBehaviour
 {
-	[SerializeField] private Transform m_player;
 	[SerializeField] private Animator m_animator;
 	[SerializeField] private GameObject m_button;
-	//[SerializeField] private PlayerController m_playerController;
 	[SerializeField] private PlayerCamera m_playerCamera;
-	[SerializeField] private InteractElevator m_interactElevator;
 	private float m_waitTime = 1f;
 	private bool m_isOpen;
 	private int m_pushCount = 1;
@@ -28,20 +25,20 @@ public class InteractButton : MonoBehaviour
 			return;
 		}
 
-		if (Input.GetMouseButtonDown(0) && m_playerCamera.GetButton() == m_button/*&& m_interactElevator.GetCanPush()*/)
+		// ボタンを押したとき
+		if (Input.GetMouseButtonDown(0) && m_playerCamera.GetButton() == m_button)
 		{
 			m_pushCount = 0;
 			
+			// ドアの開閉
 			if (!m_isOpen)
 			{
 				m_animator.Play("ElevatorOpen");
-				//await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));
 				m_isOpen = true;
 			}
 			else
 			{
 				m_animator.Play("ElevatorClose");
-				//await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));
 				m_isOpen = false;
 			}
 			await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));
@@ -49,8 +46,15 @@ public class InteractButton : MonoBehaviour
 		}
 	}
 
-	public bool GetIsOpen()
+	// ドアの開閉フラグを取得する
+	public void SetIsOpen(bool isOpen)
 	{
-		return m_isOpen;
+		m_isOpen = isOpen;
+	}
+
+	// アニメーションを返す
+	public Animator GetAnimator()
+	{
+		return m_animator;
 	}
 }

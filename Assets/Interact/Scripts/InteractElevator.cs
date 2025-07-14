@@ -19,6 +19,7 @@ public class InteractElevator : MonoBehaviour
 
 	private async void Update()
 	{
+		// エレベーターから出たとき
 		if (!m_playerController.GetIsStay())
 		{
 			m_pushCount = 1;
@@ -29,35 +30,37 @@ public class InteractElevator : MonoBehaviour
 			return;
 		}
 
+		// ボタンを押したとき
 		if (Input.GetMouseButtonDown(0) && m_playerCamera.GetButton())
 		{
 			m_pushCount = 0;
-			Debug.Log(m_pushCount);
 
+			// 上昇ボタンの場合
 			if (m_playerCamera.GetButton() == m_riseButton)
 			{
-				m_animator.Play("ElevatorClose");
-				await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));
-				RiseCheck();
-				m_animator.Play("ElevatorOpen");
-				
+				m_animator.Play("ElevatorClose");	// 閉じるアニメーション再生
+				m_interactButton.SetIsOpen(false);	// 開閉フラグをfalseにする
+
+				await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));	// 数秒待つ
+
+				RiseCheck();	// 上った場合の異変の判定
+
+				m_animator.Play("ElevatorOpen");	// 開くアニメーション再生
+				m_interactButton.SetIsOpen(true);	// 開閉フラグをtrueにする
 			}
+			// 下降ボタンの場合
 			else if (m_playerCamera.GetButton() == m_fallButton)
 			{
-				m_animator.Play("ElevatorClose");
-				await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));
-				FallCheck();
-				m_animator.Play("ElevatorOpen");
-			}
-		}
-	}
+				m_animator.Play("ElevatorClose");   // 閉じるアニメーション再生
+				m_interactButton.SetIsOpen(false);  // 開閉フラグをfalseにする
 
-	private void OnTriggerExit(Collider other)
-	{
-		if (other.CompareTag("Player"))
-		{
-			Debug.Log("!!!");
-			m_animator.Play("ElevatorClose");
+				await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));  // 数秒待つ
+
+				FallCheck();    // 下った場合の異変の判定
+
+				m_animator.Play("ElevatorOpen");    // 開くアニメーション再生
+				m_interactButton.SetIsOpen(true);   // 開閉フラグをtrueにする
+			}
 		}
 	}
 

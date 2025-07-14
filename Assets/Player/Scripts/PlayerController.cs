@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_dashSpeed;
     [SerializeField] private float m_gravity;
     [SerializeField] private CharacterController m_controller;
+    [SerializeField] private InteractButton m_interactButton;
 
     private Vector3 m_velocity;
     private bool m_isGrounded;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+        // エレベーターに乗ったとき
 		if (other.CompareTag("ElevatorSensor"))
         {
             m_isStay = true;
@@ -56,12 +58,16 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
+        // エレベーターから降りたとき
 		if (other.CompareTag("ElevatorSensor"))
 		{
 			m_isStay = false;
+            m_interactButton.GetAnimator().Play("ElevatorClose");   // 閉じるアニメーションを再生
+            m_interactButton.SetIsOpen(false);  // 開閉フラグをfalseにする
 		}
 	}
 
+    // エレベーターに滞在しているかのフラグを返す
     public bool GetIsStay()
     {
         return m_isStay;
