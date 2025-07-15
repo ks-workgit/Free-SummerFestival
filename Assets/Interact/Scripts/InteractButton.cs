@@ -52,6 +52,12 @@ public class InteractButton : MonoBehaviour
 		m_isOpen = isOpen;
 	}
 
+	// ドアの開閉フラグを返す
+	public bool GetIsOpen()
+	{
+		return m_isOpen;
+	}
+
 	// アニメーションを返す
 	public Animator GetAnimator()
 	{

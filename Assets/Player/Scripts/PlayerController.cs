@@ -58,12 +58,12 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-        // エレベーターから降りたとき
-		if (other.CompareTag("ElevatorSensor"))
+        // エレベーターから降りたかつ、扉が開いているとき
+		if (other.CompareTag("ElevatorSensor") && m_interactButton.GetIsOpen())
 		{
 			m_isStay = false;
             m_interactButton.GetAnimator().Play("ElevatorClose");   // 閉じるアニメーションを再生
-            m_interactButton.SetIsOpen(false);  // 開閉フラグをfalseにする
+			m_interactButton.SetIsOpen(false);  // 開閉フラグをfalseにする
 		}
 	}
 

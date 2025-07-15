@@ -33,11 +33,11 @@ public class InteractElevator : MonoBehaviour
 		// ボタンを押したとき
 		if (Input.GetMouseButtonDown(0) && m_playerCamera.GetButton())
 		{
-			m_pushCount = 0;
-
 			// 上昇ボタンの場合
 			if (m_playerCamera.GetButton() == m_riseButton)
 			{
+				m_pushCount = 0;
+				Debug.Log("上昇ボタン!!!");
 				m_animator.Play("ElevatorClose");	// 閉じるアニメーション再生
 				m_interactButton.SetIsOpen(false);	// 開閉フラグをfalseにする
 
@@ -51,6 +51,8 @@ public class InteractElevator : MonoBehaviour
 			// 下降ボタンの場合
 			else if (m_playerCamera.GetButton() == m_fallButton)
 			{
+				m_pushCount = 0;
+				Debug.Log("下降ボタン!!!");
 				m_animator.Play("ElevatorClose");   // 閉じるアニメーション再生
 				m_interactButton.SetIsOpen(false);  // 開閉フラグをfalseにする
 
