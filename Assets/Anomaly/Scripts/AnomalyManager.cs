@@ -18,6 +18,7 @@ public class AnomalyManager : MonoBehaviour
 
 	// 現在のフロアを表示するテキスト
 	[SerializeField] private TMP_Text m_currentNumText;
+	[SerializeField] private AnimationReset m_animReset;
 
 	private void Start()
 	{
@@ -55,6 +56,8 @@ public class AnomalyManager : MonoBehaviour
 		// 現在のフロアを更新
 		m_currentNum++;
 		m_currentNumText.text = m_currentNum.ToString() + "F";
+
+		m_animReset.AnimReset();
 
 		// 一度全ての異変を非表示
 		for (int i = 0; i < m_allAnomalyList.Count; i++)
