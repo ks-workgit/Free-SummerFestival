@@ -9,16 +9,17 @@ public class InteractButton : MonoBehaviour
 	[SerializeField] private Animator m_animator;
 	[SerializeField] private GameObject m_button;
 	[SerializeField] private PlayerCamera m_playerCamera;
-	private float m_waitTime = 1f;
 	private bool m_isOpen;
 	private int m_pushCount = 1;
+	private bool m_isPush;
 
 	private void Start()
 	{
 		m_isOpen = false;
+		m_isPush = false;
 	}
 
-	private async void Update()
+	private void Update()
 	{
 		if (m_pushCount == 0)
 		{
@@ -40,9 +41,8 @@ public class InteractButton : MonoBehaviour
 			{
 				m_animator.Play("ElevatorClose");
 				m_isOpen = false;
+				m_isPush = true;
 			}
-			await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));
-			m_pushCount = 1;
 		}
 	}
 
@@ -56,6 +56,21 @@ public class InteractButton : MonoBehaviour
 	public bool GetIsOpen()
 	{
 		return m_isOpen;
+	}
+
+	public bool GetIsPush()
+	{
+		return m_isPush;
+	}
+
+	public void SetIsPush(bool isPush)
+	{
+		m_isPush = isPush;
+	}
+
+	public void SetPushCount(int count)
+	{
+		m_pushCount = count;
 	}
 
 	// アニメーションを返す
