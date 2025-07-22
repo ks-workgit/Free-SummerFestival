@@ -14,6 +14,8 @@ public class InteractElevator : MonoBehaviour
 	[SerializeField] private InteractButton m_interactButton;
 	[SerializeField] private Animator m_animator;
 	[SerializeField] private BoxCollider m_boxCollider;
+	[SerializeField] private Material m_interactMaterial;
+	[SerializeField] private Material m_defaultMaterial;
 
 	private float m_waitTime = 5f;	// エレベーターが閉じてから開くまでの時間
 	private int m_pushCount = 1;	//ボタンを押せる回数
@@ -26,6 +28,8 @@ public class InteractElevator : MonoBehaviour
 		{
 			m_pushCount = 1;
 			m_interactButton.SetPushCount(m_pushCount);
+			m_riseButton.GetComponent<MeshRenderer>().material = m_defaultMaterial;
+			m_fallButton.GetComponent<MeshRenderer>().material = m_defaultMaterial;
 		}
 
 		// エレベーターを閉じて上昇ボタンを押していた場合
@@ -34,6 +38,7 @@ public class InteractElevator : MonoBehaviour
 			Debug.Log("上昇");
 			m_boxCollider.isTrigger = false;
 			m_interactButton.SetIsPush(false);
+			m_riseButton.GetComponent<MeshRenderer>().material = m_defaultMaterial;
 
 			await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));  // 数秒待つ
 
@@ -49,6 +54,7 @@ public class InteractElevator : MonoBehaviour
 			Debug.Log("下降");
 			m_boxCollider.isTrigger = false;
 			m_interactButton.SetIsPush(false);
+			m_fallButton.GetComponent<MeshRenderer>().material = m_defaultMaterial;
 
 			await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));  // 数秒待つ
 
@@ -72,6 +78,7 @@ public class InteractElevator : MonoBehaviour
 			{
 				m_up = true;
 				m_pushCount = 0;
+				m_riseButton.GetComponent<MeshRenderer>().material = m_interactMaterial;
 				Debug.Log("上昇ボタン!!!");
 				m_animator.Play("ElevatorOpen");	// 開くアニメーション再生
 				m_interactButton.SetIsOpen(true);   // 開閉フラグをtrueにする
@@ -81,6 +88,7 @@ public class InteractElevator : MonoBehaviour
 			{
 				m_up = false;
 				m_pushCount = 0;
+				m_fallButton.GetComponent<MeshRenderer>().material = m_interactMaterial;
 				Debug.Log("下降ボタン!!!");
 				m_animator.Play("ElevatorOpen");   // 開くアニメーション再生
 				m_interactButton.SetIsOpen(true);  // 開閉フラグをtrueにする
