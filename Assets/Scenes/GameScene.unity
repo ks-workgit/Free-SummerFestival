@@ -489,6 +489,7 @@ MonoBehaviour:
   m_clearFloor: 8
   m_currentNumText: {fileID: 1581924774}
   m_animReset: {fileID: 1827619496}
+  m_interactElevator: {fileID: 877098965}
 --- !u!4 &19331692
 Transform:
   m_ObjectHideFlags: 0
@@ -10984,10 +10985,10 @@ SceneRoots:
   - {fileID: 2055965094}
   - {fileID: 1581924776}
   - {fileID: 1676548093}
-  - {fileID: 114195945}
+  - {fileID: 1663594500}
   - {fileID: 829980173}
+  - {fileID: 114195945}
   - {fileID: 4141052}
   - {fileID: 1274110621}
   - {fileID: 471316646}
   - {fileID: 768466387}
-  - {fileID: 1663594500}

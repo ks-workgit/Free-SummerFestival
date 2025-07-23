@@ -16,11 +16,9 @@ public class AnomalyManager : MonoBehaviour
 	// クリアする階層
 	[SerializeField] private int m_clearFloor;
 
-	// 現在のフロアを表示するテキスト
-	[SerializeField] private TMP_Text m_currentNumText;
-
-	// アニメーションリセット用
-	[SerializeField] private AnimationReset m_animReset;
+	[SerializeField] private TMP_Text m_currentNumText; // 現在のフロアを表示するテキスト
+	[SerializeField] private AnimationReset m_animReset;    // アニメーションリセット用
+	[SerializeField] private InteractElevator m_interactElevator;
 
 	private void Start()
 	{
@@ -55,10 +53,23 @@ public class AnomalyManager : MonoBehaviour
 	// 異変を選んでセットする
 	public void AnomalySet()
 	{
-		// 現在のフロアを更新
-		m_currentNum++;
+		// クリアフロアの時
+		if (m_currentNum == m_clearFloor)
+		{
+			// 上った時だけ数字が増えるようにする
+			if (m_interactElevator.GetUp())
+			{
+				m_currentNum++;
+			}
+		}
+		else
+		{
+			// 現在のフロアを更新
+			m_currentNum++;
+		}
 		m_currentNumText.text = m_currentNum.ToString() + "F";
 
+		// アニメーションのリセット
 		m_animReset.AnimReset();
 
 		// 一度全ての異変を非表示
@@ -76,8 +87,11 @@ public class AnomalyManager : MonoBehaviour
 		// 現在の異変を一度空にする
 		m_anomaly = null;
 
-		if (m_currentNum == m_clearFloor)
+		// 0階の時は異変が発生しない
+		if (m_currentNum == 0)
 		{
+			m_anomaly.SetActive(false);
+			m_anomaly = null;
 			return;
 		}
 
@@ -98,5 +112,10 @@ public class AnomalyManager : MonoBehaviour
 	public GameObject Anomary()
 	{
 		return m_anomaly;
+	}
+
+	public int GetCurrentNum()
+	{
+		return m_currentNum;
 	}
 }

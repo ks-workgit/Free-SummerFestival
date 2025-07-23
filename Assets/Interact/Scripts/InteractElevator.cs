@@ -129,4 +129,9 @@ public class InteractElevator : MonoBehaviour
 			m_anomalyManager.AnomalyInit();
 		}
 	}
+
+	public bool GetUp()
+	{
+		return m_up;
+	}
 }
