@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class GameClear : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private AnomalyManager m_anomalyManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Update()
+	{
+		m_anomalyManager.GetCurrentNum();
+	}
 }
