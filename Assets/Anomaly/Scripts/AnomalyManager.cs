@@ -43,15 +43,15 @@ public class AnomalyManager : MonoBehaviour
 			m_selectAnomalyList.Add(m_allAnomalyList[i]);
 		}
 
-		AnomalySet();
-
 		// 現在のフロアを0にする
 		m_currentNum = 0;
 		m_currentNumText.text = m_currentNum.ToString() + "F";
+
+		AnomalySet(true);
 	}
 
 	// 異変を選んでセットする
-	public void AnomalySet()
+	public void AnomalySet(bool isInit)
 	{
 		// クリアフロアの時
 		if (m_currentNum == m_clearFloor)
@@ -62,7 +62,7 @@ public class AnomalyManager : MonoBehaviour
 				m_currentNum++;
 			}
 		}
-		else
+		else if (!isInit)
 		{
 			// 現在のフロアを更新
 			m_currentNum++;
@@ -90,14 +90,17 @@ public class AnomalyManager : MonoBehaviour
 		// 0階の時は異変が発生しない
 		if (m_currentNum == 0)
 		{
-			m_anomaly.SetActive(false);
-			m_anomaly = null;
+			if (m_anomaly != null)
+			{
+				m_anomaly.SetActive(false);
+				m_anomaly = null;
+			}
 			return;
 		}
 
 		// 7割の確率で異変が発生
 		var random = Random.Range(0, 10);
-		if (random > 3)
+		if (random >= 3)
 		{
 			// 選択肢からランダムで異変を選ぶ
 			var num = Random.Range(0, m_selectAnomalyList.Count);
@@ -109,7 +112,7 @@ public class AnomalyManager : MonoBehaviour
 	}
 
 	// 現在の異変を返す
-	public GameObject Anomary()
+	public GameObject Anomaly()
 	{
 		return m_anomaly;
 	}

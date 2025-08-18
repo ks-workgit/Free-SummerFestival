@@ -100,13 +100,13 @@ public class InteractElevator : MonoBehaviour
 	private void RiseCheck()
 	{
 		// 異変がない時
-		if (m_anomalyManager.Anomary() == null)
+		if (m_anomalyManager.Anomaly() == null)
 		{
 			// 正解
-			m_anomalyManager.AnomalySet();
+			m_anomalyManager.AnomalySet(false);
 		}
 		// 異変がある時
-		else if (m_anomalyManager.Anomary())
+		else if (m_anomalyManager.Anomaly())
 		{
 			// ミス
 			m_anomalyManager.AnomalyInit();
@@ -117,13 +117,13 @@ public class InteractElevator : MonoBehaviour
 	private void FallCheck()
 	{
 		// 異変がある時
-		if (m_anomalyManager.Anomary())
+		if (m_anomalyManager.Anomaly())
 		{
 			// 正解
-			m_anomalyManager.AnomalySet();
+			m_anomalyManager.AnomalySet(false);
 		}
 		// 異変がない時
-		else if (m_anomalyManager.Anomary() == null)
+		else if (m_anomalyManager.Anomaly() == null)
 		{
 			// ミス
 			m_anomalyManager.AnomalyInit();
