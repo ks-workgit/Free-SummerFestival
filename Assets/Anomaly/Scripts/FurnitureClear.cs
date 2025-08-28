@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FurnitureClear : MonoBehaviour
 {
-    [SerializeField] GameObject[] m_furniture;
+    [SerializeField] private GameObject[] m_furniture;
 
     private void OnEnable()
     {

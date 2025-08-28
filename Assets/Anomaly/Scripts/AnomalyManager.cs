@@ -117,8 +117,15 @@ public class AnomalyManager : MonoBehaviour
 		return m_anomaly;
 	}
 
+	// 現在のフロアを返す
 	public int GetCurrentNum()
 	{
 		return m_currentNum;
+	}
+
+	// クリアフロアを返す
+	public int GetClearFloor()
+	{
+		return m_clearFloor;
 	}
 }
