@@ -98,9 +98,9 @@ public class AnomalyManager : MonoBehaviour
 			return;
 		}
 
-		// 7割の確率で異変が発生
+		// 6割の確率で異変が発生
 		var random = Random.Range(0, 10);
-		if (random >= 3)
+		if (random >= 4)
 		{
 			// 選択肢からランダムで異変を選ぶ
 			var num = Random.Range(0, m_selectAnomalyList.Count);
@@ -109,6 +109,12 @@ public class AnomalyManager : MonoBehaviour
 			// 選んだ異変を表示する
 			m_anomaly.SetActive(true);
 		}
+	}
+
+	// 異変のリストを返す
+	public List<GameObject> GetAnomalyList()
+	{
+		return m_allAnomalyList;
 	}
 
 	// 現在の異変を返す
