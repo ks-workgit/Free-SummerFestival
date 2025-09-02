@@ -8,9 +8,9 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float m_sensitivity;	// マウス感度
     [SerializeField] private float m_minVertical;	// 視点の最小角度（縦の回転制限）
     [SerializeField] private float m_maxVertical;   // 視点の最大角度（縦の回転制限）
-	[SerializeField] private float m_armLength;	// Rayの距離
+	[SerializeField] private float m_armLength;		// Rayの距離
 
-    private float m_rotationX = 0f;	// 縦方向の回転角度
+	private float m_rotationX = 0f;	// 縦方向の回転角度
 
 	private GameObject m_buttonObject;	// ボタンオブジェクトを返す用
 
@@ -38,7 +38,7 @@ public class PlayerCamera : MonoBehaviour
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 			// ボタンにヒットしたら
-			if (Physics.Raycast(ray, out RaycastHit hit, m_armLength) && hit.collider.tag == "ElevatorButton")
+			if (Physics.Raycast(ray, out RaycastHit hit, m_armLength) && hit.collider.CompareTag("ElevatorButton"))
 			{
 				// ヒットしたオブジェクトをボタンオブジェクトに代入
 				m_buttonObject = hit.collider.gameObject;

@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_dashSpeed;
     [SerializeField] private float m_gravity;
     [SerializeField] private CharacterController m_controller;
+
     [SerializeField] private InteractButton m_interactButton;
+    [SerializeField] private GameClear m_gameClear;
 
     private Vector3 m_velocity;
     private bool m_isGrounded;
@@ -43,8 +45,16 @@ public class PlayerController : MonoBehaviour
         // 重力を加算
         m_velocity.y += m_gravity * Time.deltaTime;
 
-        // 移動と重力を一度のMoveで処理
-        m_controller.Move((moveDirection + m_velocity) * Time.deltaTime);
+        // クリアしたときは動けない
+        if (!m_isStay && m_gameClear.GetIsClear())
+        {
+            m_controller.Move(Vector3.zero);
+        }
+        else
+        {
+			// 移動と重力を一度のMoveで処理
+			m_controller.Move((moveDirection + m_velocity) * Time.deltaTime);
+		}
 	}
 
 	private void OnTriggerEnter(Collider other)

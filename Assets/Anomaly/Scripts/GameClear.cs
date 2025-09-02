@@ -6,6 +6,14 @@ public class GameClear : MonoBehaviour
 {
     [SerializeField] private AnomalyManager m_anomalyManager;
 	[SerializeField] private GameObject[] m_hiddenObject;
+	[SerializeField] private GameObject m_visibleObject;
+
+	private bool m_isClear = false;
+
+	private void Start()
+	{
+		m_visibleObject.SetActive(false);
+	}
 
 	private void Update()
 	{
@@ -23,6 +31,16 @@ public class GameClear : MonoBehaviour
 			{
 				anomaly.SetActive(false);
 			}
+
+			// クリアオブジェクトを表示
+			m_visibleObject.SetActive(true);
+
+			m_isClear = true;
 		}
+	}
+
+	public bool GetIsClear()
+	{
+		return m_isClear;
 	}
 }
