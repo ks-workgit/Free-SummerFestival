@@ -58,16 +58,19 @@ public class InteractButton : MonoBehaviour
 		return m_isOpen;
 	}
 
+	// ボタンを押せるかのフラグを返す
 	public bool GetIsPush()
 	{
 		return m_isPush;
 	}
 
+	// ボタンを押せるかを取得する
 	public void SetIsPush(bool isPush)
 	{
 		m_isPush = isPush;
 	}
 
+	// ボタンを押せる回数を取得する
 	public void SetPushCount(int count)
 	{
 		m_pushCount = count;

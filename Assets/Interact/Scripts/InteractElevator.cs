@@ -130,6 +130,7 @@ public class InteractElevator : MonoBehaviour
 		}
 	}
 
+	// ã¸‚·‚é‚©‚Ìƒtƒ‰ƒO‚ğ•Ô‚·
 	public bool GetUp()
 	{
 		return m_up;

@@ -39,6 +39,7 @@ public class GameClear : MonoBehaviour
 		}
 	}
 
+	// クリアフラグを返す
 	public bool GetIsClear()
 	{
 		return m_isClear;

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private InteractButton m_interactButton;
     [SerializeField] private GameClear m_gameClear;
+    [SerializeField] private FadeController m_fadeController;
 
     private Vector3 m_velocity;
     private bool m_isGrounded;
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         if (!m_isStay && m_gameClear.GetIsClear())
         {
             m_controller.Move(Vector3.zero);
+            m_fadeController.FadeIn(true);  // フェードインしつつシーン遷移
         }
         else
         {
