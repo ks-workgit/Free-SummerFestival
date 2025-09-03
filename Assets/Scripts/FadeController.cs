@@ -36,14 +36,14 @@ public class FadeController : MonoBehaviour
             t += Time.deltaTime / m_fadeDuration;
             m_canvasGroup.alpha = Mathf.Lerp(start, end, t);
             yield return null;
-        }
-        m_canvasGroup.alpha = end;
+		}
+		m_canvasGroup.alpha = end;
 
         if (m_isActive)
         {
             SceneController();
-        }
-    }
+		}
+	}
 
     // ƒV[ƒ“‘JˆÚ
     public void SceneController()
