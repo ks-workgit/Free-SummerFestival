@@ -9,6 +9,8 @@ public class InteractButton : MonoBehaviour
 	[SerializeField] private Animator m_animator;
 	[SerializeField] private GameObject m_button;
 	[SerializeField] private PlayerCamera m_playerCamera;
+	[SerializeField] private AudioSource m_se;
+
 	private bool m_isOpen;
 	private int m_pushCount = 1;
 	private bool m_isPush;
@@ -31,6 +33,8 @@ public class InteractButton : MonoBehaviour
 		{
 			m_pushCount = 0;
 			
+			m_se.Play();
+
 			// ƒhƒA‚ÌŠJ•Â
 			if (!m_isOpen)
 			{

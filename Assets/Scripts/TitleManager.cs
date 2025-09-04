@@ -7,6 +7,7 @@ public class TitleManager : MonoBehaviour
 {
 	[SerializeField] private FadeController m_fadeController;
 	[SerializeField] private Image m_fadePanel;
+	[SerializeField] private AudioSource m_bgm;
 
 	private void Start()
 	{
@@ -15,5 +16,7 @@ public class TitleManager : MonoBehaviour
 
 		// ƒV[ƒ“‘JˆÚ‚µ‚È‚¢
 		m_fadeController.FadeOut(false);
+
+		m_bgm.Play();
 	}
 }

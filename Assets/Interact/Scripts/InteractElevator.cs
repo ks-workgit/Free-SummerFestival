@@ -16,10 +16,12 @@ public class InteractElevator : MonoBehaviour
 	[SerializeField] private BoxCollider m_boxCollider;
 	[SerializeField] private Material m_interactMaterial;
 	[SerializeField] private Material m_defaultMaterial;
+	[SerializeField] private AudioSource m_se, m_moveSE, m_arrivalSE;
 
-	private float m_waitTime = 5f;	// エレベーターが閉じてから開くまでの時間
+	private float m_waitTime = 7f;	// エレベーターが閉じてから開くまでの時間
 	private int m_pushCount = 1;	//ボタンを押せる回数
 	private bool m_up = false;
+	private float m_closeTime = 1f;
 
 	private async void Update()
 	{
@@ -40,7 +42,11 @@ public class InteractElevator : MonoBehaviour
 			m_interactButton.SetIsPush(false);
 			m_riseButton.GetComponent<MeshRenderer>().material = m_defaultMaterial;
 
+			await UniTask.Delay(TimeSpan.FromSeconds(m_closeTime));
+			m_moveSE.Play();
+
 			await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));  // 数秒待つ
+			m_arrivalSE.Play();
 
 			RiseCheck();    // 上った場合の異変の判定
 
@@ -56,7 +62,11 @@ public class InteractElevator : MonoBehaviour
 			m_interactButton.SetIsPush(false);
 			m_fallButton.GetComponent<MeshRenderer>().material = m_defaultMaterial;
 
+			await UniTask.Delay(TimeSpan.FromSeconds(m_closeTime));
+			m_moveSE.Play();
+
 			await UniTask.Delay(TimeSpan.FromSeconds(m_waitTime));  // 数秒待つ
+			m_arrivalSE.Play();
 
 			FallCheck();    // 下った場合の異変の判定
 
@@ -73,6 +83,8 @@ public class InteractElevator : MonoBehaviour
 		// ボタンを押したとき
 		if (Input.GetMouseButtonDown(0) && m_playerCamera.GetButton())
 		{
+			m_se.Play();
+
 			// 上昇ボタンの場合
 			if (m_playerCamera.GetButton() == m_riseButton)
 			{
